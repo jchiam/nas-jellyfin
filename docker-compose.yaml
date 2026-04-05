@@ -1,0 +1,17 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ./config:/config
+      - ./cache:/cache
+      - /home/jchiam:/data
+      - /home/jchiam/_config/jellyfin:/config/plugins
+    network_mode: bridge
+    ports:
+      - "8899:8096"
+    environment:
+      - TZ=Asia/Singapore
